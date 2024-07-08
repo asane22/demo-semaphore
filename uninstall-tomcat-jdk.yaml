@@ -1,0 +1,47 @@
+---
+- name: Desinstaller Tomcat et JDK
+  hosts: ubuntu
+  vars:
+    tomcat_version: "10.1.20"
+    tomcat_major_version: "10"
+  tasks:
+    - name: Arrêter et désactiver le service Tomcat
+      become: yes
+      systemd:
+        name: tomcat
+        state: stopped
+        enabled: no
+
+    - name: Supprimer le fichier de service Tomcat
+      become: yes
+      file:
+        path: /etc/systemd/system/tomcat.service
+        state: absent
+
+    - name: Supprimer le répertoire d'installation de Tomcat
+      become: yes
+      shell: rm -rf /opt/tomcat{{ tomcat_major_version }}
+
+    - name: Désinstaller Open JDK 11
+      become: yes
+      apt:
+        name: openjdk-11-jre-headless
+        state: absent
+
+    - name: Désinstaller Open JDK 17
+      become: yes
+      apt:
+        name: openjdk-17-jre-headless
+        state: absent
+
+    - name: Désinstaller Open JDK 19
+      become: yes
+      apt:
+        name: openjdk-19-jre-headless
+        state: absent
+
+    - name: Désinstaller Open JDK 21
+      become: yes
+      apt:
+        name: openjdk-21-jre-headless
+        state: absent
