@@ -5,7 +5,7 @@
     tomcat_version: "10.1.20"
     tomcat_major_version: "10"
     download_url: https://dlcdn.apache.org/tomcat/tomcat-{{ tomcat_major_version }}/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz
-    ansible_become_password:'p@sser01'
+   # ansible_become_password:'p@sser01'
   tasks:
     # - name: Telecharger Open JDK 11
     #   become: yes
